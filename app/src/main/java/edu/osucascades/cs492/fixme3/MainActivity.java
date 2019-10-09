@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_oregon, false),
             new Question(R.string.question_beer, false),
             new Question(R.string.question_canal, true),
-            new Question(R.string.question_mississippi, true),
+            new Question(R.string.question_columbia, false),
             new Question(R.string.question_deschutes, true),
             new Question(R.string.question_lake, true),
             new Question(R.string.question_pilot, false),
