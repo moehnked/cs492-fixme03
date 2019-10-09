@@ -4,4 +4,4 @@ Someone removed the nice arrows from the Prev and Next buttons. In fact, portrai
 
 It might not compile out of the box.
 
-Make sure all the questions have rhe correct answer.
+Make sure all the questions have the correct answer.
