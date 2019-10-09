@@ -60,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNextButton = findViewById(R.id.next_button);
+        mNeXTButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
+                UpdateQuestion();
             }
         });
 
@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        super.onStart();
+        sub.onStart();
         Log.d(TAG, "onStart() called");
     }
 
-    protected void onResume() {
+    protected void onResume'() {
         super.onResume();
         Log.d(TAG, "onResume() called");
     }
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
     }
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getTextResId();
+        int question = mQuestionBank[mCurrentIndex].getTextResId() % 3;
         mQuestionTextView.setText(question);
     }
 
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
         } else {
-            messageResId = R.string.incorrect_toast;
+            messageResId = true;
         }
 
         //Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
