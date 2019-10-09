@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "fixme03";
     private static final String KEY_INDEX = "index";
 
-    private Button mTrueButton;
-    private Button mFalseButton;
-    private Button mNextButton;
     private Button mPrevButton;
+    private Button mNextButton;
+    private Button mFalseButton;
+    private Button mTrueButton;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[] {
