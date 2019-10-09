@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState != null) {
-            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX , 0);
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
 
         mQuestionTextView = findViewById(R.id.question_text_view);
