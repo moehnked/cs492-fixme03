@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "fixme03";
+    private static final String TAG = "cs492-fixme03";
     private static final String KEY_INDEX = "index";
+    private static final String KEY_CORRECT = "correct_count";
+    private static final String KEY_TOTAL = "total_count";
 
     private Button mPrevButton;
     private Button mNextButton;
@@ -22,17 +24,24 @@ public class MainActivity extends AppCompatActivity {
     private Button mTrueButton;
     private TextView mQuestionTextView;
 
+
     private Question[] mQuestionBank = new Question[] {
-            new Question(R.string.question_oregon, false),
+            new Question(R.string.question_bend, false),
+            new Question(R.string.question_corvallis, true),
+            new Question(R.string.question_eugene, true),
             new Question(R.string.question_beer, false),
             new Question(R.string.question_canal, true),
             new Question(R.string.question_columbia, false),
             new Question(R.string.question_deschutes, true),
             new Question(R.string.question_lake, false),
             new Question(R.string.question_pilot, false),
+            new Question(R.string.question_flag, false),
+            new Question(R.string.question_nut, true),
     };
 
     private int mCurrentIndex = 0;
+    private int mCorrectCount = 0;
+    private int mTotalCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            mCorrectCount = savedInstanceState.getInt(KEY_CORRECT, 0);
+            mTotalCount = savedInstanceState.getInt(KEY_TOTAL, 0);
         }
 
         mQuestionTextView = findViewById(R.id.question_text_view);
@@ -68,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
+                mFalseButton.setEnabled(true);
+                mTrueButton.setEnabled(true);
             }
         });
 
@@ -77,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mCurrentIndex = mCurrentIndex > 0 ? (mCurrentIndex - 1) % mQuestionBank.length : mQuestionBank.length - 1;
                 updateQuestion();
+                mFalseButton.setEnabled(true);
+                mTrueButton.setEnabled(true);
             }
         });
 
@@ -106,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        savedInstanceState.putInt(KEY_CORRECT, mCorrectCount);
+        savedInstanceState.putInt(KEY_TOTAL, mTotalCount);
     }
 
     @Override
@@ -132,15 +149,33 @@ public class MainActivity extends AppCompatActivity {
 
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
+            Log.v(TAG, "correct answer given");
+            mCorrectCount++;
         } else {
             messageResId = R.string.incorrect_toast;
+            Log.v(TAG, "incorrect answer given");
         }
-
-        //Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+        mFalseButton.setEnabled(false);
+        mTrueButton.setEnabled(false);
+        mTotalCount++;
+        
         Toast toast = Toast.makeText(MainActivity.this
                 , messageResId
                 , Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
         toast.show();
+
+        if (mTotalCount >= mQuestionBank.length) {
+
+            Toast done_toast = Toast.makeText(MainActivity.this
+                    , "You got " + mCorrectCount + " out of "
+                        + mTotalCount + " correct."
+                    , Toast.LENGTH_LONG);
+            done_toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
+            done_toast.show();
+
+            mCorrectCount = 0;
+            mTotalCount = 0;
+        }
     }
 }
