@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_bend, false),
             new Question(R.string.question_corvallis, true),
-            new Question(R.string.question_eugene, false),
+            new Question(R.string.question_eugene, true),
             new Question(R.string.question_beer, false),
             new Question(R.string.question_canal, true),
             new Question(R.string.question_columbia, false),
