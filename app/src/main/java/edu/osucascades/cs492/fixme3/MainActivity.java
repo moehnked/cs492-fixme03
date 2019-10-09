@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton.setEnabled(false);
         mTrueButton.setEnabled(false);
         mTotalCount++;
-        
+
         Toast toast = Toast.makeText(MainActivity.this
                 , messageResId
                 , Toast.LENGTH_SHORT);
