@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_canal, true),
             new Question(R.string.question_columbia, false),
             new Question(R.string.question_deschutes, true),
-            new Question(R.string.question_lake, true),
+            new Question(R.string.question_lake, false),
             new Question(R.string.question_pilot, false),
     };
 
