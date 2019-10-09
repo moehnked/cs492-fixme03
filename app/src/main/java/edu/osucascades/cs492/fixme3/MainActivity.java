@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(MainActivity.this
                 , messageResId
                 , Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, -150);
         toast.show();
     }
 }
