@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mPrevButton;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[] {
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_beer, false),
             new Question(R.string.question_canal, true),
             new Question(R.string.question_columbia, false),
-            new Question(R.string.question_des-chutes, true),
+            new Question(R.string.question_deschutes, true),
             new Question(R.string.question_lake, false),
             new Question(R.string.question_pilot, false),
     };
@@ -60,12 +61,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNeXTButton = findViewById(R.id.next_button);
+        mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                UpdateQuestion();
+                updateQuestion();
+            }
+        });
+
+        mPrevButton = findViewById(R.id.prev_button);
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex = mCurrentIndex > 0 ? (mCurrentIndex - 1) % mQuestionBank.length : mQuestionBank.length - 1;
+                updateQuestion();
             }
         });
 
@@ -74,11 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        sub.onStart();
+        super.onStart();
         Log.d(TAG, "onStart() called");
     }
 
-    protected void onResume'() {
+    @Override
+    protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume() called");
     }
@@ -91,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
     }
@@ -98,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(tag, "onStop() called");
+        Log.d(TAG, "onStop() called");
     }
 
     @Override
@@ -108,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getTextResId() % 3;
+        int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
 
@@ -120,14 +132,14 @@ public class MainActivity extends AppCompatActivity {
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
         } else {
-            messageResId = true;
+            messageResId = R.string.incorrect_toast;
         }
 
         //Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
-        Toast toast = Toast.makeText(MainActivity.that
+        Toast toast = Toast.makeText(MainActivity.this
                 , messageResId
                 , Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER_HORIZ, 0, 0);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         toast.show();
     }
 }
