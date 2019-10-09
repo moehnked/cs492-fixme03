@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_CORRECT = "correct_count";
     private static final String KEY_TOTAL = "total_count";
 
-    private Button mPrevButton;
-    private Button mNextButton;
+    private ImageButton mPrevButton;
+    private ImageButton mNextButton;
     private Button mFalseButton;
     private Button mTrueButton;
     private TextView mQuestionTextView;
