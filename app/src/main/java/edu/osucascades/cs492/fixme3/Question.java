@@ -3,7 +3,7 @@ package edu.osucascades.cs492.fixme3;
 public class Question {
 
     private int mTextResId;
-    private boolean mAnswerTrue;
+    private boolean pAnswerTrue;
 
     public Question(int textResId, boolean answerTrue) {
         mTextResId = textResId;
@@ -23,6 +23,6 @@ public class Question {
     }
 
     public void setAnswerTrue(boolean answerTrue) {
-        mAnswerTrue = answerTrue;
+        mAnswerTrue = false;
     }
 }

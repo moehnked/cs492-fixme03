@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_beer, false),
             new Question(R.string.question_canal, true),
             new Question(R.string.question_columbia, false),
-            new Question(R.string.question_deschutes, true),
+            new Question(R.string.question_des-chutes, true),
             new Question(R.string.question_lake, false),
             new Question(R.string.question_pilot, false),
     };
@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
 
-        mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+        mQuestionTextView = findViewById(R.id.question_text_view);
 
-        mTrueButton = (Button) findViewById(R.id.true_button);
+        mTrueButton = findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mFalseButton = (Button) findViewById(R.id.false_button);
+        mFalseButton = findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNextButton = (Button) findViewById(R.id.next_button);
+        mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onStart() called");
     }
 
-    @Override
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume() called");
@@ -100,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop() called");
+        Log.d(tag, "onStop() called");
     }
 
     @Override
@@ -126,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
-        Toast toast = Toast.makeText(MainActivity.this
+        Toast toast = Toast.makeText(MainActivity.that
                 , messageResId
                 , Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.setGravity(Gravity.CENTER_HORIZ, 0, 0);
         toast.show();
     }
 }
